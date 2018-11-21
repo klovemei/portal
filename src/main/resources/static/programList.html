@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/themes/icon.css">
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script type="text/javascript" src="/jquery.easyui.min.js"></script>
+    <script type="text/javascript"src="/plugins/jquery.edatagrid.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#program').edatagrid({
+                url: '/admin/get_program.do',
+                saveUrl: '/admin/save_program.do',
+                updateUrl: '/admin/update_program.do',
+                destroyUrl: '/admin/del_program.do'
+            });
+            $('#catalog').edatagrid({
+                url: '/admin/get_catalog.do',
+                saveUrl: '/admin/save_catalog.do',
+                updateUrl: '/admin/update_catalog.do',
+                destroyUrl: '/admin/del_catalog.do'
+            });
+        });
+    </script>
+    <title>programLsit</title>
+</head>
+<body>
+<table id="program" title="节目" class="easyui-datagrid" style="width:550px;height:250px"
+       toolbar="#program_toolbar" pagination="true" idField="id"
+       rownumbers="true" fitColumns="true" singleSelect="true">
+    <thead>
+    <tr>
+        <th field="imgUrl" width="50" editor="{type:'validatebox',options:{required:true}}">海报路径</th>
+        <th field="desc" width="50" editor="{type:'validatebox',options:{required:true}}">描述</th>
+        <th field="name" width="50" editor="{type:'validatebox',options:{required:true}}">名称</th>
+        <th field="money" width="50" editor="{type:'validatebox',options:{required:true}}">定价</th>
+        <th field="lastModifiedDate" width="50">最后变更日期</th>
+    </tr>
+    </thead>
+</table>
+<div id="program_toolbar">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#program').edatagrid('addRow')">新增</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#program').edatagrid('destroyRow')">删除</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#program').edatagrid('saveRow')">保存</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#program').edatagrid('cancelRow')">取消</a>
+</div>
+<table id="catalog" title="分类" class="easyui-datagrid" style="width:550px;height:250px"
+       toolbar="#catalog_toolbar" pagination="true" idField="id"
+       rownumbers="true" fitColumns="true" singleSelect="true">
+    <thead>
+    <tr>
+        <th field="catalogImgUrl" width="50" editor="{type:'validatebox',options:{required:true}}">海报路径</th>
+        <th field="catalogName" width="50" editor="{type:'validatebox',options:{required:true}}">名称</th>
+        <th field="lastModifiedDate" width="50">最后变更日期</th>
+    </tr>
+    </thead>
+</table>
+<div id="catalog_toolbar">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#catalog').edatagrid('addRow')">新增</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#catalog').edatagrid('destroyRow')">删除</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#catalog').edatagrid('saveRow')">保存</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#catalog').edatagrid('cancelRow')">取消</a>
+</div>
+</body>
+</html>

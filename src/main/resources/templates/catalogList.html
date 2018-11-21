@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>catalogList</title>
+</head>
+<body>
+<button class="btn" th:onclick="'add(\'111\')'">新增</button>
+<div class="panel-body">
+    <ul class="panel-group">
+        <li class="list-group-item" th:each="catalog:${catalogs}">
+            <span th:text="${catalog.catalogName}"></span>
+            <span th:text="${catalog.catalogImgUrl}"></span>
+            <button class="btn" th:onclick="'edit(\''+${catalog.id}+'\')'">编辑</button>
+            <button class="btn" th:onclick="'del(\''+${catalog.id}+'\')'">删除</button>
+        </li>
+    </ul>
+</div>
+<script th:inline="javascript">
+    function edit(name) {
+
+        console.log(name);
+        window.location.href='/admin/catalogEdit?catalogId='+name;
+    }
+    function add(name) {
+
+        console.log(name);
+        window.location.href='/admin/catalogEdit';
+    }
+    function del(name) {
+
+        console.log(name);
+        window.location.href='/admin/catalogDel?catalogId='+name;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${catalog.catalogName}"></title>
+</head>
+<body>
+<script th:src="@{/js/jquery.js}"></script>
+<div th:if="${success}!= null">
+    <div>操作成功</div>
+</div>
+<form action="/admin/catalogUpdate" method="get">
+    ID:<input type="text" id="catalogId" th:value="${catalog.id}"/><br/>
+    名称:<input type="text" id="catalogName" th:value="${catalog.catalogName}"/><br/>
+    图片:<input type="text" id="catalogImgUrl" th:value="${catalog.catalogImgUrl}"/><br/>
+    <input type="file" id="imgUrl" onchange="preview()" accept="image/x-png, image/jpg, image/jpeg"/>
+    <input type="submit" value="提交此类别"/>
+</form>
+<div id="imgDiv">
+<img id="img" th:src="${imgStart}+${catalog.catalogImgUrl}"/>
+</div>
+<!--<button onclick="uploadImg()">上传图片</button>-->
+<script th:inline="javascript">
+    function preview(){
+        var oFReader = new FileReader();
+        var file = document.getElementById('imgUrl').files[0];
+        oFReader.readAsDataURL(file);
+        oFReader.onloadend = function(oFRevent){
+            var src = oFRevent.target.result;
+            $('#img').attr('src',src);
+        }
+    }
+</script>
+</body>
+</html>
